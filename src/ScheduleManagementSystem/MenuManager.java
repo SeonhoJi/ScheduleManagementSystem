@@ -5,62 +5,39 @@ import java.util.Scanner;
 public class MenuManager {
 
 	public static void main(String[] args) {
-		int num = 0;
 		Scanner input = new Scanner(System.in);
+		ScheduleManager scheduleManager = new ScheduleManager(input);
 		
+		int num = 0;
 		
-		while(num!=6) {
+		while(num!=5) {
 			System.out.println("*** Schedule Management System Menu***");
 			System.out.println("1. Add Schedule");
 			System.out.println("2. Delete Schedule");
 			System.out.println("3. Edit Schedule");
 			System.out.println("4. View Schedule");
-			System.out.println("5. Show a Menu");
-			System.out.println("6. Exit");
-			System.out.println("Select one number between 1-6 : ");
+			System.out.println("5. Exit");
+			System.out.println("Select one number between 1-5 : ");
 			num = input.nextInt();
 			
 			
 			if(num==1) {
-				addSchedule();
+				scheduleManager.addSchedule();
 			}
 			
 			else if(num==2) {
-				deleteSchedule();
+				scheduleManager.deleteSchedule();
 			}
 			
 			else if(num==3) {
-				editSchedule();
+				scheduleManager.editSchedule();
 			}
 			
 			else if(num==4) {
-				veiwSchedule();
+				scheduleManager.veiwSchedule();
 			}
 		}
 		
 	}
-	public static void addSchedule() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-		System.out.print("Meeting place");
-		String place = input.next();
-		System.out.print("The business");
-		String business = input.next();
-	}
-	public static void deleteSchedule() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-	}
-	public static void editSchedule() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-	}
-	public static void veiwSchedule() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-	}
+	
 }
