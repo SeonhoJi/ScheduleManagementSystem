@@ -3,7 +3,7 @@ package schedule;
 import java.util.Scanner;
 
 public class Schedule {
-	protected ScheduleKind kind = ScheduleKind.light;
+	protected ScheduleKind kind = ScheduleKind.regular;
 	protected String place;
 	protected int date;
 	protected String business;
@@ -43,15 +43,31 @@ public class Schedule {
 	public Schedule() {
 		
 	}
-	
-	public Schedule(String place, int date, String business) {
+	public Schedule(ScheduleKind kind) {
+		this.kind = kind;
+	}
+	public Schedule(ScheduleKind kind, String place, int date, String business) {
+		this.kind = kind;
 		this.place = place;
 		this.date = date;
 		this.business = business;
 	}
 	
+	
 	public void printInfo() {
-		System.out.println("place : "+ place + " date : " + date + " business : " + business );
+		String skind = "none";
+		switch(this.kind) {
+		case regular:
+			skind = "regular";
+			break;
+		case important:
+			skind = "important";
+			break;
+		case hangout:
+			skind = "hangout";
+			break;
+		}
+		System.out.println("kind : " + skind + "place : "+ place + " date : " + date + " business : " + business );
 	}
 	
 	public void getUserInput(Scanner input) {
