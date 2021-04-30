@@ -1,7 +1,7 @@
 package schedule;
 
 public enum ScheduleKind {
-	light,
+	regular,
 	important,
-	Indispensable
+	hangout
 }
