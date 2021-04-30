@@ -3,8 +3,10 @@ package ScheduleManagementSystem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import schedule.HangoutSchedule;
 import schedule.ImportantSchedule;
 import schedule.Schedule;
+import schedule.ScheduleKind;
 
 public class ScheduleManager{
 	
@@ -18,24 +20,31 @@ public class ScheduleManager{
 		int kind = 0;
 		Schedule schedule;
 		while (kind!=1 && kind!=2) {
-			System.out.print("1 for Light Schedule");
-			System.out.print(" 2 for Important Schedule");
-			System.out.print("Select num for Schedule Kind between 1 and 2 : ");
+			System.out.println("1 for regular Schedule");
+			System.out.println("2 for Important Schedule");
+			System.out.println("3 for hangout Schedule");
+			System.out.print("Select num for Schedule Kind between 1, 2 or 3 : ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				schedule = new Schedule();
+				schedule = new Schedule(ScheduleKind.regular);
 				schedule.getUserInput(input);
 				schedules.add(schedule);
 				break;
 			}
 			else if (kind == 2) {
-				schedule = new ImportantSchedule();
+				schedule = new ImportantSchedule(ScheduleKind.important);
+				schedule.getUserInput(input);
+				schedules.add(schedule);
+				break;
+			}
+			else if (kind == 3) {
+				schedule = new HangoutSchedule(ScheduleKind.hangout); 
 				schedule.getUserInput(input);
 				schedules.add(schedule);
 				break;
 			}
 			else {
-				System.out.print("Select num for Schedule Kind between 1 and 2 : ");
+				System.out.print("Select num for Schedule Kind between 1, 2 or 3: ");
 			}
 		}
 		
