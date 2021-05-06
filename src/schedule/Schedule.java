@@ -2,7 +2,7 @@ package schedule;
 
 import java.util.Scanner;
 
-public class Schedule {
+public abstract class Schedule {
 	protected ScheduleKind kind = ScheduleKind.regular;
 	protected String place;
 	protected int date;
@@ -43,10 +43,10 @@ public class Schedule {
 	public Schedule() {
 		
 	}
-	public Schedule(ScheduleKind kind) {
+	public Schedule(ScheduleKind kind) { // method overloading
 		this.kind = kind;
 	}
-	public Schedule(ScheduleKind kind, String place, int date, String business) {
+	public Schedule(ScheduleKind kind, String place, int date, String business) {// method overloading
 		this.kind = kind;
 		this.place = place;
 		this.date = date;
@@ -54,33 +54,7 @@ public class Schedule {
 	}
 	
 	
-	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case regular:
-			skind = "regular";
-			break;
-		case important:
-			skind = "important";
-			break;
-		case hangout:
-			skind = "hangout";
-			break;
-		}
-		System.out.println("kind : " + skind + "place : "+ place + " date : " + date + " business : " + business );
-	}
+	public abstract void printInfo();
 	
-	public void getUserInput(Scanner input) {
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-		this.setDate(date);
-		
-		System.out.print("Meeting place");
-		String place = input.next();
-		this.setPlace(place);
-		
-		System.out.print("The business");
-		String business = input.next();
-		this.setBusiness(business);
-	}
+	
 }
