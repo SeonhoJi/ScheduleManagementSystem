@@ -2,7 +2,7 @@ package schedule;
 
 import java.util.Scanner;
 
-public class HangoutSchedule extends Schedule {
+public class HangoutSchedule extends Schedule implements Scheduleinput {
 	
 	public HangoutSchedule(ScheduleKind kind) {
 		super(kind);
