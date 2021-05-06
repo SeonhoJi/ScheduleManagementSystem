@@ -2,7 +2,12 @@ package schedule;
 
 import java.util.Scanner;
 
-public class ImportantSchedule extends Schedule {
+public class ImportantSchedule extends Schedule implements Scheduleinput {
+	
+	public ImportantSchedule(ScheduleKind kind) {
+		super(kind);
+	}
+	
 	public void getUserInput(Scanner input) {
 		System.out.print("Appointed date");
 		int date = input.nextInt();
@@ -26,11 +31,24 @@ public class ImportantSchedule extends Schedule {
 				
 			}
 		}
-		
-		
-		
+
 		System.out.print("The business");
 		String business = input.next();
 		this.setBusiness(business);
+	}
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case regular:
+			skind = "regular";
+			break;
+		case important:
+			skind = "important";
+			break;
+		case hangout:
+			skind = "hangout";
+			break;
+		}
+		System.out.println("kind : " + skind + "place : "+ place + " date : " + date + " business : " + business );
 	}
 }
