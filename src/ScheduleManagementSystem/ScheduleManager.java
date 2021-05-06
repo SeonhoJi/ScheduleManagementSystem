@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import schedule.HangoutSchedule;
 import schedule.ImportantSchedule;
+import schedule.RegularSchedule;
 import schedule.Schedule;
 import schedule.ScheduleKind;
+import schedule.Scheduleinput;
 
 public class ScheduleManager{
 	
-	ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+	ArrayList<Scheduleinput> schedules = new ArrayList<Scheduleinput>();
 	Scanner input;
 	ScheduleManager(Scanner input){
 		this.input = input;
@@ -18,29 +20,29 @@ public class ScheduleManager{
 	
 	public void addSchedule() {
 		int kind = 0;
-		Schedule schedule;
-		while (kind!=1 && kind!=2) {
+		Scheduleinput scheduleinput;
+		while (kind!=1 && kind!=2 && kind!=3) {
 			System.out.println("1 for regular Schedule");
 			System.out.println("2 for Important Schedule");
 			System.out.println("3 for hangout Schedule");
 			System.out.print("Select num for Schedule Kind between 1, 2 or 3 : ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				schedule = new Schedule(ScheduleKind.regular);
-				schedule.getUserInput(input);
-				schedules.add(schedule);
+				scheduleinput = new RegularSchedule(ScheduleKind.regular);
+				scheduleinput.getUserInput(input);
+				schedules.add(scheduleinput);
 				break;
 			}
 			else if (kind == 2) {
-				schedule = new ImportantSchedule(ScheduleKind.important);
-				schedule.getUserInput(input);
-				schedules.add(schedule);
+				scheduleinput = new ImportantSchedule(ScheduleKind.important);
+				scheduleinput.getUserInput(input);
+				schedules.add(scheduleinput);
 				break;
 			}
 			else if (kind == 3) {
-				schedule = new HangoutSchedule(ScheduleKind.hangout); 
-				schedule.getUserInput(input);
-				schedules.add(schedule);
+				scheduleinput = new HangoutSchedule(ScheduleKind.hangout); 
+				scheduleinput.getUserInput(input);
+				schedules.add(scheduleinput);
 				break;
 			}
 			else {
@@ -74,8 +76,8 @@ public class ScheduleManager{
 		System.out.print("Appointed date");
 		int date = input.nextInt();
 		for(int i = 0; i<schedules.size();i++) {
-			Schedule schedule = schedules.get(i);
-			if (schedules.get(i).getDate() == date) {
+			Scheduleinput scheduleinput = schedules.get(i);
+			if (scheduleinput.getDate() == date) {
 				int num = -1;
 				while(num!=4) {
 					System.out.println("*** Schedule Info Edit Menu***");
@@ -89,19 +91,19 @@ public class ScheduleManager{
 					if(num==1) {
 						System.out.print("Appointed date");
 						date = input.nextInt();
-						schedule.setDate(date);
+						scheduleinput.setDate(date);
 					}
 					
 					else if(num==2) {
 						System.out.print("Meeting place");
 						String place = input.next();
-						schedule.setPlace(place);
+						scheduleinput.setPlace(place);
 					}
 					
 					else if(num==3) {
 						System.out.print("The business");
 						String business = input.next();
-						schedule.setBusiness(business);
+						scheduleinput.setBusiness(business);
 					}
 					else {
 						continue;
