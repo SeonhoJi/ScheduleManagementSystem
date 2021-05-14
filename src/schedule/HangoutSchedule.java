@@ -2,7 +2,9 @@ package schedule;
 
 import java.util.Scanner;
 
-public class HangoutSchedule extends Schedule implements Scheduleinput {
+import exception.PlaceFormatException;
+
+public class HangoutSchedule extends NoRegularSchedule {
 	
 	public HangoutSchedule(ScheduleKind kind) {
 		super(kind);
@@ -11,48 +13,56 @@ public class HangoutSchedule extends Schedule implements Scheduleinput {
 	protected String wheretoplay;
 	protected String whattoplay;
 	
+
 	public void getUserInput(Scanner input) {
-		System.out.print("Appointed date");
-		int date = input.nextInt();
-		this.setDate(date);
-		
+		setDate(input);
+		setBusinesswithYN(input);
+		setPlacewithYN(input);
+		setwheretoplaywithYN(input);
+		setwhattoplaywithYN(input);
+	}
+	public void setwheretoplaywithYN(Scanner input) {
 		char answer = 'x';
 		while(answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
 			System.out.print("Do you know where to play? (Y/N)");
 			answer = input.next().charAt(0);
+			try {
+				if (answer == 'Y' || answer =='y') {
+					setPlace(input);
+					break;
+				}
+				else if (answer == 'N' || answer =='n') {
+					this.setPlace(" ");
+					break;
+				}
+				else {
+					
+				}
+			}
+			catch(PlaceFormatException e) {
+				System.out.println("Incorrect Place Format. Put the place contains @");
+			}
+		}
+	}
+	public void setwhattoplaywithYN(Scanner input) {
+		char answer = 'x';
+		while(answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
+			System.out.print("Do you know what to play? (Y/N)");
+			answer = input.next().charAt(0);
 			if (answer == 'Y' || answer =='y') {
-				System.out.print("where to play ");
-				String place = input.next();
-				this.setPlace(place);
+				setBusiness(input);
 				break;
 			}
-			else if (answer == 'Y' || answer =='y') {
-				this.setPlace("");
+			else if (answer == 'N' || answer =='n') {
+				this.setBusiness("");
 				break;
 			}
 			else {
 				
 			}
 		}
-		
-		System.out.print("The business");
-		String business = input.next();
-		this.setBusiness(business);
 	}
-	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case hangout:
-			skind = "hangout";
-			break;
-		case important:
-			skind = "important";
-			break;
-		case regular:
-			skind = "regular";
-			break;
-		}
-		System.out.println("kind : " + skind + "place : "+ place + " date : " + date + " business : " + business+ " wheretoplay : "+ place + " whattoplay : " + business  );
-	}
-
+	
+	
+	
 }
