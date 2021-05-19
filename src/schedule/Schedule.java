@@ -1,10 +1,15 @@
 package schedule;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.PlaceFormatException;
 
-public abstract class Schedule implements Scheduleinput{
+public abstract class Schedule implements Scheduleinput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -624977753553651104L;
 	protected ScheduleKind kind = ScheduleKind.regular;
 	protected String place;
 	protected int date;
