@@ -1,5 +1,6 @@
 package ScheduleManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,14 +8,18 @@ import java.util.Scanner;
 import schedule.HangoutSchedule;
 import schedule.ImportantSchedule;
 import schedule.RegularSchedule;
-import schedule.Schedule;
 import schedule.ScheduleKind;
 import schedule.Scheduleinput;
 
-public class ScheduleManager{
+public class ScheduleManager implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8632506672144333923L;
 	
 	ArrayList<Scheduleinput> schedules = new ArrayList<Scheduleinput>();
-	Scanner input;
+	transient Scanner input;
 	ScheduleManager(Scanner input){
 		this.input = input;
 	}
